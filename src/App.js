@@ -1,18 +1,22 @@
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Header from './components/header.jsx' ;
 import ExerciseForm from './components/excerciseForm.jsx';
 import Results from './components/results.jsx';
-import { useState } from 'react';
+import FindExercises from './components/findExercises.jsx';
 
 function App() {
-  const [selectedExercises, setSelectedExercises] = useState([]);
-
   return (
-    <div className="App">
-      <Header />
-      <ExerciseForm onExercisesSelected={setSelectedExercises} />
-      <Results exercises={selectedExercises} />
-    </div>
+    <BrowserRouter>
+      <div className="container">
+        <Header />
+        <Routes>
+          <Route path="/" element={<ExerciseForm />} />
+          <Route path="/ExcerciseForm" element={<ExerciseForm />} />
+          <Route path="/findExercises" element={<FindExercises />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
